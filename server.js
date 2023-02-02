@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
   res.send("Hello World! Node");
 });
 
+
 //create the data 
 app.post('/product', async (req ,res)=>{
     try{
@@ -21,6 +22,19 @@ app.post('/product', async (req ,res)=>{
         res.status(500).json({message : error.message});
     }
 });
+
+//read all data 
+app.get('/product', async (req ,res)=>{
+    try{
+        const product = await Product.find({});
+        res.status(200).json(product);
+    } catch (error){
+        console.log(error.message);
+        res.status(500).json({message : error.message});
+    }
+});
+
+
 
 
 //Database connect
